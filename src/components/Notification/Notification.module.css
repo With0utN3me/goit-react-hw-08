@@ -1,0 +1,7 @@
+.notification{
+    font-size: 25px;
+    margin-top: 10px;
+    color: darkgray;
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: black;
+}

@@ -1,0 +1,10 @@
+#root {
+  margin: 60px auto;
+  min-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+}
+
