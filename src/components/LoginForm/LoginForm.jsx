@@ -46,11 +46,11 @@ const LoginForm = () => {
 
             <Form className={css.form} autoComplete="off">
                 <label className={css.label} htmlFor={emailFieldId}>Email</label>
-                <Field className={css.field} type="text" name="email" id={emailFieldId}></Field>
+                <Field className={css.field} type="email" name="email" id={emailFieldId}></Field>
                 <ErrorMessage className={css.error} name="email" as="span"/>
 
                 <label className={css.label} htmlFor={passwordFieldId}>Password</label>
-                <Field className={css.field} type="text" name="password" id={passwordFieldId}></Field>
+                <Field className={css.field} type="password" name="password" id={passwordFieldId}></Field>
                 <ErrorMessage className={css.error} name="password" as="span"/>
 
                 <button className={css.button} type="submit">Log In</button>
