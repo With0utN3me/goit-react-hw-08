@@ -44,7 +44,7 @@ const LoginForm = () => {
             onSubmit={handleSubmit}
             validationSchema={loginSchema}>
 
-            <Form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+            <Form className={css.form} autoComplete="off">
                 <label className={css.label} htmlFor={emailFieldId}>Email</label>
                 <Field className={css.field} type="text" name="email" id={emailFieldId}></Field>
                 <ErrorMessage className={css.error} name="email" as="span"/>

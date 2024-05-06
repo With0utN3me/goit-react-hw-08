@@ -52,7 +52,7 @@ const RegistrationForm = () => {
             onSubmit={handleSubmit}
             validationSchema={registrationSchema}>
 
-            <Form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+            <Form className={css.form} autoComplete="off">
                 <label className={css.label} htmlFor={nameFieldId}>Username</label>
                 <Field className={css.field} type="text" name="name" id={nameFieldId}></Field>
                 <ErrorMessage className={css.error} name="name" as="span"/>
