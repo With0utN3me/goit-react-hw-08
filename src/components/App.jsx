@@ -1,41 +1,57 @@
 import './App.css'
-import { useEffect } from 'react';
-import ContactList from './ContactList/ContactList';
-import SearchBox from './SearchBox/SearchBox';
-import ContactForm from "./ContactForm/ContactForm"
+import { useEffect, lazy } from 'react';
 import Notification from './Notification/Notification';
+import Layout from './Layout';
+import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
+import { Route, Routes } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectFilteredContacts, selectIsLoading, selectError } from '../redux/contactsSlice';
-import { fetchContacts } from '../redux/contactsOps';
+import { refreshUser } from '../redux/auth/operations';
+import { selectIsRefreshing } from '../redux/auth/selectors';
+
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const RegistrationPage = lazy(() => import('../pages/RegistrationPage/RegistrationPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  
+  const { isRefreshing } = useSelector(selectIsRefreshing);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  const contacts = useSelector(selectContacts);
-  const visibleContacts = useSelector(selectFilteredContacts);
+  return isRefreshing ? (
+    <Notification text = {"Refreshing user..."}/>
+  ) : (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
-  return(
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm/>
-      <SearchBox/>
-      {isLoading && !error && <p>Request in progress...</p>}
-  {visibleContacts.length === 0 ? (
-    contacts.length !== 0 ? (
-      <Notification text = {"There are no contacts matching your request."}/>) :
-      <>
-        <Notification text = {"There are no contacts yet, but you can add new one's!"}/>
-      </>
-    ) : <ContactList/>
-}
-    </div>)
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<RegistrationPage />} />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
+
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
+      </Routes>
+    </Layout>
+  )
 }
 export default App;
-
