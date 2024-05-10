@@ -8,3 +8,20 @@
 .username {
     font-weight: 700;
 }
+.btn{
+    width: 200px;
+    font-size: 21px;
+    margin: 10px auto;
+    padding: 5px;
+
+    border: 2px solid darkgrey;
+    border-radius: 6px;
+    background-color: rgb(254, 248, 248);
+    box-shadow: 2px 2px 0 0 darkgrey,
+    4px 4px 0 0 black;
+    transition-duration: 200ms;
+}
+.btn:hover{
+    box-shadow: 3px 3px darkgrey, 6px 6px 0 0 black;
+    transform: translate(2px, -2px);
+}

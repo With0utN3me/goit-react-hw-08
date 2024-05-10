@@ -6,13 +6,15 @@
     padding: 10px;
     width: 400px;
     margin: 15px auto;
+    background-color: rgb(252, 209, 190);
 }
 .label{
     text-align: left;
     margin-bottom: 5px;
 }
 .field{
-    padding: 4px;
+    padding: 6px;
+    background-color: rgb(254, 248, 248);
 }
 .error{
     color: red;
@@ -27,7 +29,7 @@
 
     border: 2px solid darkgrey;
     border-radius: 6px;
-    background-color: gainsboro;
+    background-color: rgb(254, 248, 248);
     box-shadow: 2px 2px 0 0 darkgrey,
     4px 4px 0 0 black;
     transition-duration: 200ms;
