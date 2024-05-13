@@ -5,4 +5,11 @@
 .linkWrap{
     display: flex;
     gap: 45px;
+    margin-bottom: 20px;
+}
+@media(max-width: 767px){
+    .linkWrap{
+        gap: 30px;
+        margin-bottom: 10px;
+    }
 }

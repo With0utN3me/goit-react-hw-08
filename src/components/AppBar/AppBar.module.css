@@ -6,3 +6,8 @@
     border-bottom: 1px solid #2a363b;
     max-width: 1000px;
 }
+@media (max-width: 376px) {
+    .header{
+        max-width: 370px;
+    }
+}

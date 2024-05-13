@@ -7,7 +7,7 @@ const customStyles = {
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     content: {
-        width: '400px',
+        maxWidth: '400px',
         height: '220px',
         backgroundColor: 'rgb(252, 209, 190)',
         margin: 'auto',

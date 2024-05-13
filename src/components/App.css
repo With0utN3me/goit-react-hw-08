@@ -1,5 +1,5 @@
 #root {
-  margin: 60px auto;
+  margin: 40px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,4 +7,3 @@
   font-size: 19px;
   color: rgb(138, 60, 60);
 }
-
