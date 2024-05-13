@@ -1,5 +1,6 @@
 import './App.css'
 import { useEffect, lazy } from 'react';
+import { Toaster } from 'react-hot-toast';
 import Notification from './Notification/Notification';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
@@ -27,6 +28,7 @@ const App = () => {
     <Notification text = {"Refreshing user..."}/>
   ) : (
     <Layout>
+      <Toaster />
       <Routes>
         <Route path="/" element={<HomePage />} />
 

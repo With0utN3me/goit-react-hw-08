@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteContact, updateContact } from "../../redux/contacts/operations";
 import { ModalDelete } from './ModalDelete';
-import PropTypes from 'prop-types';
+import toast from 'react-hot-toast';
 import { ModalEdit } from './ModalEdit';
 const Contact = ({ name, number, id }) => {
     const dispatch = useDispatch();
@@ -14,9 +14,11 @@ const Contact = ({ name, number, id }) => {
     const handleEdit = () => {
         dispatch(updateContact({ id: editedContact.id, name: editedContact.name, number: editedContact.number }))
             .then(() => {
+                toast.success('Contact was successfully updated');
                 setIsEditModalOpen(false);
             })
             .catch((error) => {
+                toast.error('Problem with updating contact');
                 console.error(error);
             });
     };
@@ -29,9 +31,11 @@ const Contact = ({ name, number, id }) => {
     const handleDelete = () => {
         dispatch(deleteContact(id))
             .then(() => {
+                toast.success('Contact was successfully deleted');
                 setIsModalOpen(false);
             })
             .catch((error) => {
+                toast.error('Problem with deleting contact');
                 console.error(error);
             });
     };

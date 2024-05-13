@@ -9,7 +9,7 @@ const customStyles = {
     content: {
         width: '400px',
         height: '300px',
-        backgroundColor: '#e3d0e0',
+        backgroundColor: 'rgb(252, 209, 190)',
         margin: 'auto',
         border: '1px solid #ccc',
         borderRadius: '8px',

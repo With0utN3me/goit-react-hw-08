@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -10,6 +11,7 @@ export const fetchContacts = createAsyncThunk(
             const response = await axios.get('/contacts');
             return response.data;
         } catch (e) {
+            toast.error('Something went wrong. Please try again!');
             return thunkAPI.rejectWithValue(e.message);
         }
     }
@@ -19,8 +21,10 @@ export const addContact = createAsyncThunk(
     async ({ name, number }, thunkAPI) => {
         try {
             const response = await axios.post('/contacts', { name, number });
+            toast.success(`${name} was added to the contact list!`);
             return response.data;
         } catch (e) {
+            toast.error('Something went wrong. Please try again!');
             return thunkAPI.rejectWithValue(e.message);
         }
     }

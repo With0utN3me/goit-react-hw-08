@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
@@ -22,8 +23,10 @@ export const register = createAsyncThunk(
             const res = await axios.post('/users/signup', credentials);
             // After successful registration, add the token to the HTTP header
             setAuthHeader(res.data.token);
+            toast.success("Registration completed!");
             return res.data;
         } catch (error) {
+            toast.error(`${error.message}`);
         return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -39,8 +42,10 @@ export const logIn = createAsyncThunk(
             const res = await axios.post('/users/login', credentials);
             // After successful login, add the token to the HTTP header
             setAuthHeader(res.data.token);
+            toast.success('Welcome back!');
             return res.data;
         } catch (error) {
+            toast.error('Wrong password or email. Please try again!');
         return thunkAPI.rejectWithValue(error.message);
         }
     }
@@ -55,6 +60,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
         // After a successful logout, remove the token from the HTTP header
         clearAuthHeader();
     } catch (error) {
+        toast.error(`${error.message}`);
         return thunkAPI.rejectWithValue(error.message);
     }
 });
@@ -71,6 +77,7 @@ export const refreshUser = createAsyncThunk(
     
         if (persistedToken === null) {
             // If there is no token, exit without performing any request
+            toast.error('Unable to fetch user');
             return thunkAPI.rejectWithValue('Unable to fetch user');
         }
     
@@ -80,6 +87,7 @@ export const refreshUser = createAsyncThunk(
             const res = await axios.get('/users/current');
             return res.data;
         } catch (error) {
+            toast.error(`${error.message}`);
             return thunkAPI.rejectWithValue(error.message);
         }
     }
