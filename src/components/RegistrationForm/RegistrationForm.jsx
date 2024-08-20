@@ -57,7 +57,7 @@ const RegistrationForm = () => {
                 <Field className={css.field} type="text" name="name" id={nameFieldId}></Field>
                 <ErrorMessage className={css.error} name="name" as="span"/>
                 
-                <label className={css.label} htmlFor={emailFieldId}>Email</label>
+                <label className={css.label} htmlFor={emailFieldId}>Email (@gmail is not supported!)</label>
                 <Field className={css.field} type="email" name="email" id={emailFieldId}></Field>
                 <ErrorMessage className={css.error} name="email" as="span"/>
 
